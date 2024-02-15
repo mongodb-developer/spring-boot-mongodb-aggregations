@@ -14,8 +14,11 @@ import java.util.stream.Stream;
 @RequestMapping("/api/sales")
 public class SalesController {
 
-    @Autowired
-    private SalesService salesService;
+    private final SalesService salesService;
+
+    public SalesController(SalesService salesService) {
+        this.salesService = salesService;
+    }
 
     @GetMapping
     public List<Sales> getAllSales() {

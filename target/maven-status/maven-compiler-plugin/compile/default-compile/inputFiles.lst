@@ -1,8 +1,8 @@
-/Users/aasawari.sahasrabuddhe/Downloads/tutorialCrud/src/main/java/com/tutorialCrud/model/Sales.java
-/Users/aasawari.sahasrabuddhe/Downloads/tutorialCrud/src/main/java/com/tutorialCrud/tutorialCRUD.java
-/Users/aasawari.sahasrabuddhe/Downloads/tutorialCrud/src/main/java/com/tutorialCrud/repository/SalesRepository.java
-/Users/aasawari.sahasrabuddhe/Downloads/tutorialCrud/src/main/java/com/tutorialCrud/service/SalesService.java
-/Users/aasawari.sahasrabuddhe/Downloads/tutorialCrud/src/main/java/com/tutorialCrud/service/SalesServiceImpl.java
-/Users/aasawari.sahasrabuddhe/Downloads/tutorialCrud/src/main/java/com/tutorialCrud/model/Customer.java
-/Users/aasawari.sahasrabuddhe/Downloads/tutorialCrud/src/main/java/com/tutorialCrud/controller/SalesController.java
-/Users/aasawari.sahasrabuddhe/Downloads/tutorialCrud/src/main/java/com/tutorialCrud/model/Item.java
+/home/polux/Work/tutorialCRUD/src/main/java/com/tutorialCrud/model/Sales.java
+/home/polux/Work/tutorialCRUD/src/main/java/com/tutorialCrud/controller/SalesController.java
+/home/polux/Work/tutorialCRUD/src/main/java/com/tutorialCrud/service/SalesService.java
+/home/polux/Work/tutorialCRUD/src/main/java/com/tutorialCrud/model/Item.java
+/home/polux/Work/tutorialCRUD/src/main/java/com/tutorialCrud/repository/SalesRepository.java
+/home/polux/Work/tutorialCRUD/src/main/java/com/tutorialCrud/tutorialCRUD.java
+/home/polux/Work/tutorialCRUD/src/main/java/com/tutorialCrud/service/SalesServiceImpl.java
+/home/polux/Work/tutorialCRUD/src/main/java/com/tutorialCrud/model/Customer.java

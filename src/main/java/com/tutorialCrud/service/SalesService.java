@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 public interface SalesService {
 
-
     List<Sales> getAllSales();
 
     Sales getSaleById(String id);
@@ -25,7 +24,6 @@ public interface SalesService {
     List<Sales> getSalesByTag(String tag);
 
     List<Sales> getSalesByPurchaseMethod(String purchaseMethod);
-
 
     Stream<Sales> getSingleSale();
 
