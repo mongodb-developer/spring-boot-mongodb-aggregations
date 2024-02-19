@@ -1,7 +1,6 @@
 package com.tutorialCrud.model;
 
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
@@ -85,4 +84,3 @@ public class Sales {
         this.purchaseMethod = purchaseMethod;
     }
 }
-

@@ -23,7 +23,7 @@ public class SalesController {
         this.salesService = salesService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<SalesDTO> getAllSales() {
         return salesService.findAll();
     }

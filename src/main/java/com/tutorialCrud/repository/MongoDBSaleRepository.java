@@ -1,19 +1,23 @@
 package com.tutorialCrud.repository;
 
+import com.mongodb.ReadConcern;
+import com.mongodb.ReadPreference;
+import com.mongodb.TransactionOptions;
+import com.mongodb.WriteConcern;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.FindOneAndReplaceOptions;
 import com.tutorialCrud.model.Sales;
 import jakarta.annotation.PostConstruct;
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.ReturnDocument.AFTER;
-
+@Repository
 public class MongoDBSaleRepository implements  SalesRepository{
 
     private final MongoClient mongoclient;
