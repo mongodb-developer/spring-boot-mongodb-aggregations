@@ -1,18 +1,19 @@
 package com.tutorialCrud.repository;
 
 import com.tutorialCrud.model.Sales;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
+import java.util.Collection;
 import java.util.List;
+public interface SalesRepository{
 
-public interface SalesRepository extends MongoRepository<Sales, String> {
+   List<Sales> findAll();
 
-    List<Sales> findByItemsTagsContaining(String tag);
+    Sales update(Sales sale);
 
-    List<Sales> findByPurchaseMethod(String purchaseMethod);
+    Sales findOne(String id);
 
-    @Query(value = "{ 'storeLocation' : ?0 }")
-    Sales findByStoreLocation(String storeLocation);
-
+    Long delete(String id);
 }

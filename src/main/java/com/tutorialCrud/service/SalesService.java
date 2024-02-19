@@ -1,35 +1,29 @@
 package com.tutorialCrud.service;
 
+import com.tutorialCrud.Dto.SalesDTO;
 import com.tutorialCrud.model.Sales;
+import org.bson.types.ObjectId;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public interface SalesService {
 
-    List<Sales> getAllSales();
 
-    Sales getSaleById(String id);
+    List<SalesDTO> findAll();
 
-    Sales createSale(Sales sale);
+    SalesDTO findOne(String id);
 
-    Sales updateSale(String id, Sales sale);
+    SalesDTO updateSale(SalesDTO salesDTO);
 
-    void deleteSale(String id);
-
-    BigDecimal getTotalSalesAmount();
-
-    List<Sales> getSalesByTag(String tag);
-
-    List<Sales> getSalesByPurchaseMethod(String purchaseMethod);
-
-    Stream<Sales> getSingleSale();
-
-    Sales getSaleByLocation(String location);
+    Long deleteSale(String id);
 
     List<Sales> matchAggregationOp(String matchValue);
 
     List<Map> groupAggregation(String matchValue);
+
+    List<Map> findTotalSales();
+
+
+
 }

@@ -1,13 +1,14 @@
 package com.tutorialCrud.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
 
 public class Sales {
-    @Id
-    private String id;
+
+    private static ObjectId id;
     private Date saleDate;
     private List<Item> items;
     private String storeLocation;
@@ -18,7 +19,7 @@ public class Sales {
     public Sales() {
     }
 
-    public Sales(String id, Date saleDate, List<Item> items, String storeLocation, Customer customer, boolean couponUsed, String purchaseMethod) {
+    public Sales(ObjectId id, Date saleDate, List<Item> items, String storeLocation, Customer customer, boolean couponUsed, String purchaseMethod) {
         this.id = id;
         this.saleDate = saleDate;
         this.items = items;
@@ -28,11 +29,11 @@ public class Sales {
         this.purchaseMethod = purchaseMethod;
     }
 
-    public String getId() {
+    public static ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
