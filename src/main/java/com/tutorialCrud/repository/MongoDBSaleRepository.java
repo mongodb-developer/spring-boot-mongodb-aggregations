@@ -20,6 +20,12 @@ import static com.mongodb.client.model.ReturnDocument.AFTER;
 @Repository
 public class MongoDBSaleRepository implements  SalesRepository{
 
+    private static final TransactionOptions txnOptions = TransactionOptions.builder()
+            .readPreference(ReadPreference.primary())
+            .readConcern(ReadConcern.MAJORITY)
+            .writeConcern(WriteConcern.MAJORITY)
+            .build();
+
     private final MongoClient mongoclient;
     private MongoCollection<Sales> saleCollection;
 
@@ -53,4 +59,5 @@ public class MongoDBSaleRepository implements  SalesRepository{
     public Long delete(String id) {
         return saleCollection.deleteOne(eq("_id", new ObjectId(id))).getDeletedCount();
     }
+
 }
