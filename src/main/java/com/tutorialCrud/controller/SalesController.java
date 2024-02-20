@@ -1,17 +1,16 @@
 package com.tutorialCrud.controller;
 
 import com.tutorialCrud.Dto.SalesDTO;
+import com.tutorialCrud.exceptions.EntityNotFoundException;
 import com.tutorialCrud.model.Sales;
 import com.tutorialCrud.service.SalesService;
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/sales")
@@ -19,6 +18,7 @@ public class SalesController {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(SalesController.class);
     private final SalesService salesService;
+
     public SalesController(SalesService salesService) {
         this.salesService = salesService;
     }
@@ -29,18 +29,15 @@ public class SalesController {
     }
 
     @GetMapping("/findOne/{id}")
-   public ResponseEntity<SalesDTO> getSalesById(@PathVariable String id){
-        SalesDTO sales = salesService.findOne(id);
-        if (sales == null)
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        return ResponseEntity.ok(sales);
+    public SalesDTO getSalesById(@PathVariable String id) {
+        return salesService.findOne(id);
     }
-
 
     @PutMapping("/updateUser")
     public SalesDTO updateSale(@RequestBody SalesDTO salesDTO) {
         return salesService.updateSale(salesDTO);
     }
+
     @DeleteMapping("/deleteUser/{id}")
     public Long deleteSale(@PathVariable String id) {
         return salesService.deleteSale(id);
@@ -52,16 +49,28 @@ public class SalesController {
         return salesService.matchAggregationOp(matchStage);
     }
 
-
     //filters documents based on the "storeLocation", groups them by "storeLocation", calculates the total sales and average satisfaction for each store location,
     @GetMapping("/aggregation/groupStage/{matchStage}")
     public List<Map> groupAggregationOp(@PathVariable String matchStage) {
         return salesService.groupAggregation(matchStage);
     }
 
-   //Count the number of sales made in each store location:
+    //Count the number of sales made in each store location:
     @GetMapping("/aggregation/TotalSales")
-    public List<Map> findTotalSales(){
+    public List<Map> findTotalSales() {
         return salesService.findTotalSales();
     }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "MongoDB didn't find any document.")
+    public final void handleNotFoundExceptions(EntityNotFoundException e) {
+        LOGGER.info("=> Person not found: {}", e.toString());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Internal Server Error")
+    public final void handleAllExceptions(RuntimeException e) {
+        LOGGER.error("=> Internal server error.", e);
+    }
+
 }

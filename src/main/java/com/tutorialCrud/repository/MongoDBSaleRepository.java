@@ -17,14 +17,15 @@ import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.ReturnDocument.AFTER;
+
 @Repository
-public class MongoDBSaleRepository implements  SalesRepository{
+public class MongoDBSaleRepository implements SalesRepository {
 
     private static final TransactionOptions txnOptions = TransactionOptions.builder()
-            .readPreference(ReadPreference.primary())
-            .readConcern(ReadConcern.MAJORITY)
-            .writeConcern(WriteConcern.MAJORITY)
-            .build();
+                                                                           .readPreference(ReadPreference.primary())
+                                                                           .readConcern(ReadConcern.MAJORITY)
+                                                                           .writeConcern(WriteConcern.MAJORITY)
+                                                                           .build();
 
     private final MongoClient mongoclient;
     private MongoCollection<Sales> saleCollection;
@@ -35,7 +36,7 @@ public class MongoDBSaleRepository implements  SalesRepository{
 
     @PostConstruct
     void init() {
-         saleCollection = mongoclient.getDatabase("sample_supplies").getCollection("sales", Sales.class);
+        saleCollection = mongoclient.getDatabase("sample_supplies").getCollection("sales", Sales.class);
     }
 
 
