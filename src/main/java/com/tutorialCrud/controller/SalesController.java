@@ -28,10 +28,11 @@ public class SalesController {
         return salesService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/findOne/{id}")
    public ResponseEntity<SalesDTO> getSalesById(@PathVariable String id){
         SalesDTO sales = salesService.findOne(id);
-        if (sales == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        if (sales == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         return ResponseEntity.ok(sales);
     }
 

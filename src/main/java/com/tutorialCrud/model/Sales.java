@@ -8,7 +8,7 @@ import java.util.List;
 public class Sales {
 
     private static ObjectId id;
-    private Date saleDate;
+    private Date saleDate = new Date();
     private List<Item> items;
     private String storeLocation;
     private Customer customer;
