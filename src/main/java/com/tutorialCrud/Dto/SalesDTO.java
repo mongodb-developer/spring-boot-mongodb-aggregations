@@ -13,7 +13,9 @@ public record SalesDTO(String id, Date saleDate,
 
 
     public SalesDTO(Sales s) {
-        this(s.getId() == null ? new ObjectId().toHexString() : s.getId().toHexString(), s.getSaleDate(), s.getStoreLocation(), s.isCouponUsed(), s.getPurchaseMethod(), new CustomerDTO((s.getCustomer())), s.getItems()
+        this(Sales.getId() == null ? new ObjectId().toHexString() : Sales.getId().toHexString(),
+                s.getSaleDate(), s.getStoreLocation(), s.isCouponUsed(), s.getPurchaseMethod(),
+                new CustomerDTO((s.getCustomer())), s.getItems()
                                                                                                                                                                                                       .stream()
                                                                                                                                                                                                       .map(ItemDTO::new)
                                                                                                                                                                                                       .toList());
@@ -23,7 +25,8 @@ public record SalesDTO(String id, Date saleDate,
         ObjectId _id = id == null ? new ObjectId() : new ObjectId(id);
         return new Sales(_id, saleDate, items.stream()
                                              .map(ItemDTO::toItem)
-                                             .toList(), storeLocation, customer.toCustomer(), couponUsed, purchaseMethod);
+                                             .toList(),
+                storeLocation, customer.toCustomer(), couponUsed, purchaseMethod);
 
     }
 }

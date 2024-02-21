@@ -1,5 +1,7 @@
 package com.tutorialCrud.model;
 
+import com.tutorialCrud.Dto.CustomerDTO;
+import com.tutorialCrud.Dto.ItemDTO;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
@@ -26,6 +28,9 @@ public class Sales {
         this.customer = customer;
         this.couponUsed = couponUsed;
         this.purchaseMethod = purchaseMethod;
+    }
+
+    public Sales(String id, Date saleDate, String storeLocation, Boolean couponUsed, CustomerDTO customer, List<ItemDTO> items) {
     }
 
     public static ObjectId getId() {

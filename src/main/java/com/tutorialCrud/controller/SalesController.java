@@ -1,8 +1,9 @@
 package com.tutorialCrud.controller;
 
+
 import com.tutorialCrud.Dto.SalesDTO;
+import com.tutorialCrud.Dto.TotalSalesDTO;
 import com.tutorialCrud.exceptions.EntityNotFoundException;
-import com.tutorialCrud.model.Sales;
 import com.tutorialCrud.service.SalesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class SalesController {
         return salesService.findAll();
     }
 
-    @GetMapping("/findOne/{id}")
+    @GetMapping("/{id}")
     public SalesDTO getSalesById(@PathVariable String id) {
         return salesService.findOne(id);
     }
@@ -45,7 +46,7 @@ public class SalesController {
 
     //Find all documents with the storeLocation specified. Example: London
     @GetMapping("/aggregation/{matchStage}")
-    public List<Sales> matchAggregationOp(@PathVariable String matchStage) {
+    public List<SalesDTO> matchAggregationOp(@PathVariable String matchStage) {
         return salesService.matchAggregationOp(matchStage);
     }
 
@@ -57,14 +58,14 @@ public class SalesController {
 
     //Count the number of sales made in each store location:
     @GetMapping("/aggregation/TotalSales")
-    public List<Map> findTotalSales() {
+    public List<TotalSalesDTO> findTotalSales() {
         return salesService.findTotalSales();
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "MongoDB didn't find any document.")
     public final void handleNotFoundExceptions(EntityNotFoundException e) {
-        LOGGER.info("=> Person not found: {}", e.toString());
+        LOGGER.info("=> No data Found {}", e.toString());
     }
 
     @ExceptionHandler(RuntimeException.class)

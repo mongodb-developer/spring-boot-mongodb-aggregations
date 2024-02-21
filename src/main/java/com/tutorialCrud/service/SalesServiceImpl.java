@@ -1,18 +1,16 @@
 package com.tutorialCrud.service;
 
+
 import com.tutorialCrud.Dto.SalesDTO;
+import com.tutorialCrud.Dto.TotalSalesDTO;
 import com.tutorialCrud.exceptions.EntityNotFoundException;
 import com.tutorialCrud.model.Sales;
 import com.tutorialCrud.repository.SalesRepository;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.*;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 
 
 @Service
@@ -47,45 +45,33 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public SalesDTO updateSale(SalesDTO salesDTO) {
-        return new SalesDTO((salesRepository.update(salesDTO.toSales())));
+        Sales updatedSale = salesRepository.update(salesDTO.toSales());
+        if (updatedSale == null)
+            throw new EntityNotFoundException("SalesServiceImpl#update");
+        return new SalesDTO(updatedSale);
     }
 
     @Override
     public Long deleteSale(String id) {
+        if (id == null)
+            throw new EntityNotFoundException("SalesServiceImpl#delete");
         return salesRepository.delete(id);
     }
 
     //Aggregation Methods
     @Override
-    public List<Sales> matchAggregationOp(String matchValue) {
-        // todo move code to repository instead
-        MatchOperation matchStage = match(new Criteria("storeLocation").is(matchValue));
-        ProjectionOperation projectStage = project("items");
-        Aggregation aggregation = newAggregation(matchStage, projectStage);
-        return mongoTemplate.aggregate(aggregation, "sales", Sales.class).getMappedResults();
+    public List<SalesDTO> matchAggregationOp(String matchValue) {
+        return salesRepository.matchOp(matchValue);
     }
 
     @Override
     public List<Map> groupAggregation(String matchValue) {
-        MatchOperation matchStage = match(new Criteria("storeLocation").is(matchValue));
-        GroupOperation groupStage = group("storeLocation").count()
-                                                          .as("totalSales")
-                                                          .avg("customer.satisfaction")
-                                                          .as("averageSatisfaction");
-        ProjectionOperation projectStage = project("storeLocation", "totalSales", "averageSatisfaction");
-        Aggregation aggregation = newAggregation(matchStage, groupStage, projectStage);
-        // todo remove Map.class => DTO instead?
-        return mongoTemplate.aggregate(aggregation, "sales", Map.class).getMappedResults();
+       return salesRepository.groupOp(matchValue);
     }
 
 
     @Override
-    public List<Map> findTotalSales() {
-        GroupOperation groupStage = group("storeLocation").count().as("totalSales");
-        SkipOperation skipStage = skip(0);
-        LimitOperation limitStage = limit(10);
-        Aggregation aggregation = newAggregation(groupStage, skipStage, limitStage);
-        // todo remove Map.class => DTO instead?
-        return mongoTemplate.aggregate(aggregation, "sales", Map.class).getMappedResults();
+    public List<TotalSalesDTO> findTotalSales() {
+        return salesRepository.TotalSales();
     }
 }
