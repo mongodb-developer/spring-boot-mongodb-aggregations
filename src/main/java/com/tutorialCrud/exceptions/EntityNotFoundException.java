@@ -4,18 +4,11 @@ import java.io.Serial;
 import java.util.Arrays;
 
 public class EntityNotFoundException extends RuntimeException {
-    private final String[] args;
-
     @Serial
     private static final long serialVersionUID = 1L;
-
-    public EntityNotFoundException(Class<?> entityClass, Object id, String[] args) {
-        super(String.format("%s was not found for parameter %s", entityClass.getSimpleName(), id));
-        this.args = args;
-    }
+    private final String[] args;
 
     public EntityNotFoundException(String... args) {
-        super(String.format("%s was not found for parameter %s" ));
         this.args = args;
     }
 

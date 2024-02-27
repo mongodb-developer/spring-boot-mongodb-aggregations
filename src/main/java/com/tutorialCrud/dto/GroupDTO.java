@@ -1,4 +1,4 @@
-package com.tutorialCrud.Dto;
+package com.tutorialCrud.dto;
 
 public record GroupDTO(String _id, int totalSales, double averageSatisfaction) {
     public GroupDTO(String _id, int totalSales, double averageSatisfaction) {

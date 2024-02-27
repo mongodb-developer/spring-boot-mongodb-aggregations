@@ -13,21 +13,21 @@ import org.springframework.context.annotation.Configuration;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-    @Configuration
-    public class MongoDBConfiguration {
+@Configuration
+public class MongoDBConfiguration {
 
-        @Value("${spring.data.mongodb.uri}")
-        private String connectionString;
+    @Value("${spring.data.mongodb.uri}")
+    private String connectionString;
 
-        @Bean
-        public MongoClient mongoClient() {
-            CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
-            CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
-            return MongoClients.create(MongoClientSettings.builder()
-                    .applyConnectionString(new ConnectionString(connectionString))
-                    .codecRegistry(codecRegistry)
-                    .build());
-        }
-
+    @Bean
+    public MongoClient mongoClient() {
+        CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
+        CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
+        return MongoClients.create(MongoClientSettings.builder()
+                                                      .applyConnectionString(new ConnectionString(connectionString))
+                                                      .codecRegistry(codecRegistry)
+                                                      .build());
     }
+
+}
 

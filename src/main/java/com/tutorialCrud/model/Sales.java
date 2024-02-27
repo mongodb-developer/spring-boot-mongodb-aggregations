@@ -1,15 +1,19 @@
 package com.tutorialCrud.model;
 
-import com.tutorialCrud.Dto.CustomerDTO;
-import com.tutorialCrud.Dto.ItemDTO;
+import com.tutorialCrud.dto.CustomerDTO;
+import com.tutorialCrud.dto.ItemDTO;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
 
+@Document("sales")
 public class Sales {
 
-    private static ObjectId id;
+    @Id
+    private ObjectId id;
     private Date saleDate = new Date();
     private List<Item> items;
     private String storeLocation;
@@ -20,7 +24,8 @@ public class Sales {
     public Sales() {
     }
 
-    public Sales(ObjectId id, Date saleDate, List<Item> items, String storeLocation, Customer customer, boolean couponUsed, String purchaseMethod) {
+    public Sales(ObjectId id, Date saleDate, List<Item> items, String storeLocation, Customer customer,
+                 boolean couponUsed, String purchaseMethod) {
         this.id = id;
         this.saleDate = saleDate;
         this.items = items;
@@ -30,10 +35,11 @@ public class Sales {
         this.purchaseMethod = purchaseMethod;
     }
 
-    public Sales(String id, Date saleDate, String storeLocation, Boolean couponUsed, CustomerDTO customer, List<ItemDTO> items) {
+    public Sales(String id, Date saleDate, String storeLocation, Boolean couponUsed, CustomerDTO customer,
+                 List<ItemDTO> items) {
     }
 
-    public static ObjectId getId() {
+    public ObjectId getId() {
         return id;
     }
 

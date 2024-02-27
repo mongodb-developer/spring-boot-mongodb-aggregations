@@ -1,8 +1,8 @@
 package com.tutorialCrud.controller;
 
-
-import com.tutorialCrud.Dto.SalesDTO;
-import com.tutorialCrud.Dto.TotalSalesDTO;
+import com.tutorialCrud.dto.GroupDTO;
+import com.tutorialCrud.dto.SalesDTO;
+import com.tutorialCrud.dto.TotalSalesDTO;
 import com.tutorialCrud.exceptions.EntityNotFoundException;
 import com.tutorialCrud.service.SalesService;
 import org.slf4j.Logger;
@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/sales")
@@ -52,7 +51,7 @@ public class SalesController {
 
     //filters documents based on the "storeLocation", groups them by "storeLocation", calculates the total sales and average satisfaction for each store location,
     @GetMapping("/aggregation/groupStage/{matchStage}")
-    public List<Map> groupAggregationOp(@PathVariable String matchStage) {
+    public List<GroupDTO> groupAggregationOp(@PathVariable String matchStage) {
         return salesService.groupAggregation(matchStage);
     }
 

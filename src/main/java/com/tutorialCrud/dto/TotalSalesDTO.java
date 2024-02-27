@@ -1,4 +1,4 @@
-package com.tutorialCrud.Dto;
+package com.tutorialCrud.dto;
 
 public record TotalSalesDTO(String id, int totalSales) {
     public TotalSalesDTO(String id, int totalSales) {
