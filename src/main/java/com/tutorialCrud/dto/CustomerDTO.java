@@ -1,5 +1,4 @@
-package com.tutorialCrud.Dto;
-
+package com.tutorialCrud.dto;
 import com.tutorialCrud.model.Customer;
 
 public record CustomerDTO(String gender, int age, String email, int satisfaction){

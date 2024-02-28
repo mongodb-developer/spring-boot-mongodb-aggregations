@@ -1,8 +1,8 @@
 package com.tutorialCrud.service;
 
 
-import com.tutorialCrud.Dto.SalesDTO;
-import com.tutorialCrud.Dto.TotalSalesDTO;
+import com.tutorialCrud.dto.SalesDTO;
+import com.tutorialCrud.dto.TotalSalesDTO;
 import com.tutorialCrud.exceptions.EntityNotFoundException;
 import com.tutorialCrud.model.Sales;
 import com.tutorialCrud.repository.SalesRepository;
@@ -17,11 +17,9 @@ import java.util.Map;
 public class SalesServiceImpl implements SalesService {
 
     private final SalesRepository salesRepository;
-    private final MongoTemplate mongoTemplate;
 
-    public SalesServiceImpl(SalesRepository salesRepository, MongoTemplate mongoTemplate) {
+    public SalesServiceImpl(SalesRepository salesRepository) {
         this.salesRepository = salesRepository;
-        this.mongoTemplate = mongoTemplate; // todo remove?
     }
 
 
@@ -46,15 +44,17 @@ public class SalesServiceImpl implements SalesService {
     @Override
     public SalesDTO updateSale(SalesDTO salesDTO) {
         Sales updatedSale = salesRepository.update(salesDTO.toSales());
-        if (updatedSale == null)
+        if (updatedSale == null) {
             throw new EntityNotFoundException("SalesServiceImpl#update");
+        }
         return new SalesDTO(updatedSale);
     }
 
     @Override
     public Long deleteSale(String id) {
-        if (id == null)
+        if (id == null || id.isEmpty()) {
             throw new EntityNotFoundException("SalesServiceImpl#delete");
+        }
         return salesRepository.delete(id);
     }
 

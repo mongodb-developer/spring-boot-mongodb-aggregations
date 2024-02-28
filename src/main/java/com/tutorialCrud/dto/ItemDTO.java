@@ -1,4 +1,4 @@
-package com.tutorialCrud.Dto;
+package com.tutorialCrud.dto;
 
 import com.tutorialCrud.model.Item;
 

@@ -1,8 +1,9 @@
 package com.tutorialCrud.service;
 
 
-import com.tutorialCrud.Dto.SalesDTO;
-import com.tutorialCrud.Dto.TotalSalesDTO;
+import com.tutorialCrud.dto.GroupDTO;
+import com.tutorialCrud.dto.SalesDTO;
+import com.tutorialCrud.dto.TotalSalesDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ public interface SalesService {
 
     List<SalesDTO> matchAggregationOp(String matchValue);
 
-    List<Map> groupAggregation(String matchValue);
+    List<GroupDTO> groupAggregation(String matchValue);
 
     List<TotalSalesDTO> findTotalSales();
 }
