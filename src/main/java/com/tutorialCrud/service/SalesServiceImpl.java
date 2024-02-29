@@ -1,6 +1,7 @@
 package com.tutorialCrud.service;
 
 
+import com.tutorialCrud.dto.GroupDTO;
 import com.tutorialCrud.dto.SalesDTO;
 import com.tutorialCrud.dto.TotalSalesDTO;
 import com.tutorialCrud.exceptions.EntityNotFoundException;
@@ -65,7 +66,7 @@ public class SalesServiceImpl implements SalesService {
     }
 
     @Override
-    public List<Map> groupAggregation(String matchValue) {
+    public List<GroupDTO> groupAggregation(String matchValue) {
        return salesRepository.groupOp(matchValue);
     }
 
