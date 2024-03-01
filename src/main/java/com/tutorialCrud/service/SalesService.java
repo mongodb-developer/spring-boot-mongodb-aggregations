@@ -4,6 +4,7 @@ package com.tutorialCrud.service;
 import com.tutorialCrud.dto.GroupDTO;
 import com.tutorialCrud.dto.SalesDTO;
 import com.tutorialCrud.dto.TotalSalesDTO;
+import com.tutorialCrud.model.Sales;
 
 import java.util.List;
 import java.util.Map;
@@ -12,9 +13,9 @@ public interface SalesService {
 
     List<SalesDTO> findAll();
 
-    SalesDTO findOne(String id);
+    Sales findOne(String id);
 
-    SalesDTO updateSale(SalesDTO salesDTO);
+    Sales updateSale(SalesDTO salesDTO);
 
     Long deleteSale(String id);
 

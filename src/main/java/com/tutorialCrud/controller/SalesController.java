@@ -1,18 +1,16 @@
 package com.tutorialCrud.controller;
 
-
 import com.tutorialCrud.dto.GroupDTO;
 import com.tutorialCrud.dto.SalesDTO;
 import com.tutorialCrud.dto.TotalSalesDTO;
 import com.tutorialCrud.exceptions.EntityNotFoundException;
+import com.tutorialCrud.model.Sales;
 import com.tutorialCrud.service.SalesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/sales")
@@ -24,22 +22,18 @@ public class SalesController {
     public SalesController(SalesService salesService) {
         this.salesService = salesService;
     }
-
     @GetMapping()
     public List<SalesDTO> getAllSales() {
         return salesService.findAll();
     }
-
     @GetMapping("/{id}")
-    public SalesDTO getSalesById(@PathVariable String id) {
+    public Sales getSalesById(@PathVariable String id) {
         return salesService.findOne(id);
     }
-
     @PutMapping("/updateUser")
-    public SalesDTO updateSale(@RequestBody SalesDTO salesDTO) {
+    public Sales updateSale(@RequestBody SalesDTO salesDTO) {
         return salesService.updateSale(salesDTO);
     }
-
     @DeleteMapping("/deleteUser/{id}")
     public Long deleteSale(@PathVariable String id) {
         return salesService.deleteSale(id);

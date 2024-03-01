@@ -15,9 +15,9 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.ReturnDocument.AFTER;
@@ -40,7 +40,6 @@ public class MongoDBSaleRepository implements SalesRepository {
         saleCollection = mongoclient.getDatabase("sample_supplies").getCollection("sales", Sales.class);
     }
 
-
     @Override
     public List<Sales> findAll() {
         return saleCollection.find().into(new ArrayList<>());
@@ -61,7 +60,6 @@ public class MongoDBSaleRepository implements SalesRepository {
     public Long delete(String id) {
         return saleCollection.deleteOne(eq("_id", new ObjectId(id))).getDeletedCount();
     }
-
 
     @Override
     public List<SalesDTO> matchOp(String matchValue) {

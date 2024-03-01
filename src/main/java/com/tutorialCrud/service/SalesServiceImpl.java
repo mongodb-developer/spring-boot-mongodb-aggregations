@@ -32,23 +32,22 @@ public class SalesServiceImpl implements SalesService {
         }
         return salesDTOS;
     }
-
     @Override
-    public SalesDTO findOne(String id) {
+    public Sales findOne(String id) {
         Sales sale = salesRepository.findOne(id);
-        if (sale == null) {
-            throw new EntityNotFoundException("SalesServiceImpl#findOne");
+        if(sale == null){
+            throw new EntityNotFoundException("SalesServiceImpl#findAll");
         }
-        return new SalesDTO(sale);
+        return sale;
     }
 
     @Override
-    public SalesDTO updateSale(SalesDTO salesDTO) {
+    public Sales updateSale(SalesDTO salesDTO) {
         Sales updatedSale = salesRepository.update(salesDTO.toSales());
         if (updatedSale == null) {
             throw new EntityNotFoundException("SalesServiceImpl#update");
         }
-        return new SalesDTO(updatedSale);
+        return updatedSale;
     }
 
     @Override

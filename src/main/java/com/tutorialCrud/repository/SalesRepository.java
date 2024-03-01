@@ -6,16 +6,12 @@ import com.tutorialCrud.dto.TotalSalesDTO;
 import com.tutorialCrud.model.Sales;
 
 import java.util.List;
-import java.util.Map;
 
 public interface SalesRepository {
 
-   List<Sales> findAll();
-
-    Sales update(Sales sale);
-
+    List<Sales> findAll();
     Sales findOne(String id);
-
+    Sales update(Sales sale);
     Long delete(String id);
     List<SalesDTO> matchOp(String matchValue);
     List<GroupDTO> groupOp(String matchValue);
