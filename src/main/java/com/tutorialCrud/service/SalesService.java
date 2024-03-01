@@ -1,16 +1,9 @@
 package com.tutorialCrud.service;
 
-<<<<<<< HEAD
-
 import com.tutorialCrud.dto.GroupDTO;
 import com.tutorialCrud.dto.SalesDTO;
 import com.tutorialCrud.dto.TotalSalesDTO;
 import com.tutorialCrud.model.Sales;
-=======
-import com.tutorialCrud.dto.GroupDTO;
-import com.tutorialCrud.dto.SalesDTO;
-import com.tutorialCrud.dto.TotalSalesDTO;
->>>>>>> origin/maxime
 
 import java.util.List;
 

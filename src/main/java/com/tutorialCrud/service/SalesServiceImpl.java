@@ -1,9 +1,5 @@
 package com.tutorialCrud.service;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/maxime
 import com.tutorialCrud.dto.GroupDTO;
 import com.tutorialCrud.dto.SalesDTO;
 import com.tutorialCrud.dto.TotalSalesDTO;
@@ -46,11 +42,7 @@ public class SalesServiceImpl implements SalesService {
         if (updatedSale == null) {
             throw new EntityNotFoundException("SalesServiceImpl#update");
         }
-<<<<<<< HEAD
-        return updatedSale;
-=======
-        return new SalesDTO(updatedSale);
->>>>>>> origin/maxime
+        return new SalesDTO(updatedSale).toSales();
     }
 
     @Override
@@ -69,11 +61,7 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public List<GroupDTO> groupAggregation(String matchValue) {
-<<<<<<< HEAD
-       return salesRepository.groupOp(matchValue);
-=======
         return salesRepository.groupOp(matchValue);
->>>>>>> origin/maxime
     }
 
     @Override
