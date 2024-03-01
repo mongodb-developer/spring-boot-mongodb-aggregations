@@ -15,17 +15,32 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 @Configuration
 public class MongoDBConfiguration {
+<<<<<<< HEAD
     @Value("${spring.data.mongodb.uri}")
     private String connectionString;
 
+=======
+
+    @Value("${spring.data.mongodb.uri}")
+    private String connectionString;
+
+>>>>>>> origin/maxime
     @Bean
     public MongoClient mongoClient() {
         CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
         CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
         return MongoClients.create(MongoClientSettings.builder()
+<<<<<<< HEAD
                     .applyConnectionString(new ConnectionString(connectionString))
                     .codecRegistry(codecRegistry)
                     .build());
+=======
+                                                      .applyConnectionString(new ConnectionString(connectionString))
+                                                      .codecRegistry(codecRegistry)
+                                                      .build());
+>>>>>>> origin/maxime
     }
+}
+
 }
 

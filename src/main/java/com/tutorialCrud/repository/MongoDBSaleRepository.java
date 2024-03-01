@@ -17,7 +17,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.ReturnDocument.AFTER;
@@ -74,9 +73,9 @@ public class MongoDBSaleRepository implements SalesRepository {
     public List<GroupDTO> groupOp(String matchValue) {
         MatchOperation matchStage = match(new Criteria("storeLocation").is(matchValue));
         GroupOperation groupStage = group("storeLocation").count()
-                                                                 .as("totalSales")
-                                                                 .avg("customer.satisfaction")
-                                                                 .as("averageSatisfaction");
+                                                          .as("totalSales")
+                                                          .avg("customer.satisfaction")
+                                                          .as("averageSatisfaction");
         ProjectionOperation projectStage = project("storeLocation", "totalSales", "averageSatisfaction");
         Aggregation aggregation = newAggregation(matchStage, groupStage, projectStage);
         AggregationResults<GroupDTO> results = mongoTemplate.aggregate(aggregation, "sales", GroupDTO.class);

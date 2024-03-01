@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 # Advance MongoDB Aggregations with SpringBoot using Amazon Coretto JDK
 
+=======
+# MongoDB CRUD Tutorial with Coretto 21 JDK
+
+> Note for Aasawari: this is just a template. Improve the README and replace everything with your values.
+>>>>>>> origin/maxime
 
 ## Blog Post
 
@@ -17,12 +23,17 @@ The code in this repository is discussed in [this blog post](XXX) in the [MongoD
 
 - Start the server in a console with `mvn spring-boot:run`.
 - You can build the project with : `mvn clean package`.
+<<<<<<< HEAD
 - You can run the project with the fat jar and the embedded Tomcat: `java -jar target/springboot-mongo-atlas-0.0.1-SNAPSHOT.jar` but I would use a real tomcat in production.
+=======
+- You can run the project with the fat jar and the embedded Tomcat: `java -jar target/springbbot-mongo-atlas-0.0.1-SNAPSHOT.jar` but I would use a real tomcat in production.
+>>>>>>> origin/maxime
 
 
 ## Example API Calls
 
 ```bash
+<<<<<<< HEAD
 curl -X 'GET' 'curl http://localhost:8080/api/sales' -H 'accept: */*'
 ```
 ```bash
@@ -68,12 +79,50 @@ curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/groupStage/Denver' -H
 
 ```bash
 curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/TotalSales' -H 'accept: */*'
+=======
+curl -X 'POST' \
+  'http://localhost:8080/api/person' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "firstName": "Maxime",
+  "lastName": "Beugnet",
+  "age": 35,
+  "address": {
+    "number": 123,
+    "street": "avenue des Champs-Elysées",
+    "postcode": "75000",
+    "city": "Paris",
+    "country": "France"
+  },
+  "insurance": true,
+  "cars": [
+    {
+      "brand": "Peugeot",
+      "model": "3008",
+      "maxSpeedKmH": 280
+    }
+  ]
+}'
+```
+
+```bash
+curl -X 'GET' 'http://localhost:8080/api/persons' -H 'accept: */*'
+>>>>>>> origin/maxime
 ```
 
 ## Author
 
+<<<<<<< HEAD
 Aasawari Sahasrabuddhe
 
 - aasawari.sahasrabuddhe@mongodb.com
 - aasawariMongoDB on [GitHub](https://github.com/aasawariMongoDB/tutorialCRUD)
 - Aasawari Sahasrabuddhe in the [MongoDB Developer Community forum](https://www.mongodb.com/community/forums/u/aasawari/summary).
+=======
+Maxime Beugnet
+
+- maxime@mongodb.com
+- MaBeuLux88 on [GitHub](https://github.com/mabeulux88)
+- MaBeuLux88 in the [MongoDB Developer Community forum](https://www.mongodb.com/community/forums/u/MaBeuLux88/summary).
+>>>>>>> origin/maxime

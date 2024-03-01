@@ -12,7 +12,7 @@ import java.util.List;
 @Document("sales")
 public class Sales {
     @Id
-    private static ObjectId id;
+    private ObjectId id;
     private Date saleDate = new Date();
     private List<Item> items;
     private String storeLocation;
@@ -38,7 +38,7 @@ public class Sales {
                  List<ItemDTO> items) {
     }
 
-    public  ObjectId getId() {
+    public ObjectId getId() {
         return id;
     }
 

@@ -1,18 +1,18 @@
 package com.tutorialCrud.service;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/maxime
 import com.tutorialCrud.dto.GroupDTO;
 import com.tutorialCrud.dto.SalesDTO;
 import com.tutorialCrud.dto.TotalSalesDTO;
 import com.tutorialCrud.exceptions.EntityNotFoundException;
 import com.tutorialCrud.model.Sales;
 import com.tutorialCrud.repository.SalesRepository;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
-
 
 @Service
 public class SalesServiceImpl implements SalesService {
@@ -22,7 +22,6 @@ public class SalesServiceImpl implements SalesService {
     public SalesServiceImpl(SalesRepository salesRepository) {
         this.salesRepository = salesRepository;
     }
-
 
     @Override
     public List<SalesDTO> findAll() {
@@ -47,7 +46,11 @@ public class SalesServiceImpl implements SalesService {
         if (updatedSale == null) {
             throw new EntityNotFoundException("SalesServiceImpl#update");
         }
+<<<<<<< HEAD
         return updatedSale;
+=======
+        return new SalesDTO(updatedSale);
+>>>>>>> origin/maxime
     }
 
     @Override
@@ -66,9 +69,12 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public List<GroupDTO> groupAggregation(String matchValue) {
+<<<<<<< HEAD
        return salesRepository.groupOp(matchValue);
+=======
+        return salesRepository.groupOp(matchValue);
+>>>>>>> origin/maxime
     }
-
 
     @Override
     public List<TotalSalesDTO> findTotalSales() {
