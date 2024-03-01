@@ -23,7 +23,38 @@ The code in this repository is discussed in [this blog post](XXX) in the [MongoD
 ## Example API Calls
 
 ```bash
-curl -X 'GET' 'http://localhost:8080/api/persons' -H 'accept: */*'
+curl -X 'GET' 'curl http://localhost:8080/api/sales' -H 'accept: */*'
+```
+```bash
+curl -X 'GET' 'curl http://localhost:8080/api/sales/65e1a2627bb4f16e57daadff' -H 'accept: */*'
+```
+
+```bash
+curl -X PUT -H "Content-Type: application/json" -d '{
+  "id": "5bd761dcae323e45a93cd068",
+  "saleDate": "2013-10-14T20:05:16.962Z",
+  "items": [
+    {
+      "name": "notepad",
+      "tags": [ "office", "writing", "school" ],
+      "price": "35.02",
+      "quantity": 3
+    },
+    {
+      "name": "notepad",
+      "tags": [ "office", "writing", "school" ],
+      "price": "22.7",
+      "quantity": 2
+    }
+  ],
+  "storeLocation": "London",
+  "customer": { "gender": "M", "age": 32, "email": "erro@finhu.gn", "satisfaction": 4 },
+  "couponUsed": true,
+  "purchaseMethod": "In store"
+}' 'http://localhost:8080/api/sales/updateUser'
+```
+```bash
+curl -X 'DELETE' 'http://localhost:8080/api/sales/deleteUser/5bd761dcae323e45a93cd068' -H 'accept: */*'
 ```
 
 ```bash
