@@ -10,18 +10,13 @@ The code in this repository is discussed in [this blog post](XXX) in the [MongoD
 - Spring boot 3.2.2
 - MongoDB 7.0
 - MongoDB Java driver 4.11.1
-- Maven 3.8.7
+- Maven 3.9.6
 
 ## Commands
 
 - Start the server in a console with `mvn spring-boot:run`.
 - You can build the project with : `mvn clean package`.
-<<<<<<< HEAD
 - You can run the project with the fat jar and the embedded Tomcat: `java -jar target/springboot-mongo-atlas-0.0.1-SNAPSHOT.jar` but I would use a real tomcat in production.
-=======
-- You can run the project with the fat jar and the embedded Tomcat: `java -jar target/springbbot-mongo-atlas-0.0.1-SNAPSHOT.jar` but I would use a real tomcat in production.
->>>>>>> origin/maxime
-
 
 ## Example API Calls
 
@@ -62,8 +57,7 @@ curl -X 'DELETE' 'http://localhost:8080/api/sales/deleteUser/5bd761dcae323e45a93
 ```
 
 ```bash
-curl -X 'GET' \
-  'http://localhost:8080/api/sales/aggregation/London -H 'accept: */*'
+curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/London -H 'accept: */*'
 ```
 
 ```bash
@@ -72,36 +66,6 @@ curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/groupStage/Denver' -H
 
 ```bash
 curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/TotalSales' -H 'accept: */*'
-=======
-curl -X 'POST' \
-  'http://localhost:8080/api/person' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "firstName": "Maxime",
-  "lastName": "Beugnet",
-  "age": 35,
-  "address": {
-    "number": 123,
-    "street": "avenue des Champs-Elysées",
-    "postcode": "75000",
-    "city": "Paris",
-    "country": "France"
-  },
-  "insurance": true,
-  "cars": [
-    {
-      "brand": "Peugeot",
-      "model": "3008",
-      "maxSpeedKmH": 280
-    }
-  ]
-}'
-```
-
-```bash
-curl -X 'GET' 'http://localhost:8080/api/persons' -H 'accept: */*'
->>>>>>> origin/maxime
 ```
 
 ## Author
