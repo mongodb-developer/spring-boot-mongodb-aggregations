@@ -57,7 +57,7 @@ curl -X 'DELETE' 'http://localhost:8080/api/sales/deleteUser/5bd761dcae323e45a93
 ```
 
 ```bash
-curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/London -H 'accept: */*'
+curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/London' -H 'accept: */*'
 ```
 
 ```bash
