@@ -1,8 +1,6 @@
 package com.tutorialCrud.service;
 
-import com.tutorialCrud.dto.GroupDTO;
-import com.tutorialCrud.dto.SalesDTO;
-import com.tutorialCrud.dto.TotalSalesDTO;
+import com.tutorialCrud.dto.*;
 import com.tutorialCrud.model.Sales;
 
 import java.util.List;
@@ -22,4 +20,6 @@ public interface SalesService {
     List<GroupDTO> groupAggregation(String matchValue);
 
     List<TotalSalesDTO> findTotalSales();
+    List<PopularDTO> findPopularItems();
+    List<BucketsDTO> findTotalSpend();
 }

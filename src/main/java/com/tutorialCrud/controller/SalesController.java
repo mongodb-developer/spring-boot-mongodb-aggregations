@@ -1,8 +1,6 @@
 package com.tutorialCrud.controller;
 
-import com.tutorialCrud.dto.GroupDTO;
-import com.tutorialCrud.dto.SalesDTO;
-import com.tutorialCrud.dto.TotalSalesDTO;
+import com.tutorialCrud.dto.*;
 import com.tutorialCrud.exceptions.EntityNotFoundException;
 import com.tutorialCrud.model.Sales;
 import com.tutorialCrud.service.SalesService;
@@ -56,6 +54,17 @@ public class SalesController {
     public List<TotalSalesDTO> findTotalSales() {
         return salesService.findTotalSales();
     }
+
+    //Finding the top 5 sold items based on the quantity sold for each category
+    @GetMapping("/aggregation/PopularItem")
+    public List<PopularDTO> findPopularItems() { return salesService.findPopularItems(); }
+
+    //This MongoDB aggregation pipeline first calculates the number of items in each sale
+    // and the total amount spent for each sale.
+    // Then it buckets the sales based on the number of items, calculates the count
+    // and total amount spent within each bucket.
+    @GetMapping("/aggregation/buckets")
+    public List<BucketsDTO> findTotalSpend(){ return salesService.findTotalSpend(); }
 
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "MongoDB didn't find any document.")

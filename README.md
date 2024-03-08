@@ -7,9 +7,9 @@ The code in this repository is discussed in [this blog post](XXX) in the [MongoD
 ## Supported versions:
 
 - Java 21
-- Spring boot 3.2.2
-- MongoDB 7.0
-- MongoDB Java driver 4.11.1
+- Spring boot 4.2.2
+- MongoDB 6.0
+- MongoDB Java driver 4.11.0
 - Maven 3.9.6
 
 ## Commands
@@ -66,6 +66,12 @@ curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/groupStage/Denver' -H
 
 ```bash
 curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/TotalSales' -H 'accept: */*'
+```
+```bash
+curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/PopularItem' -H 'accept: */*'
+```
+```bash
+curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/buckets' -H 'accept: */*'
 ```
 
 ## Author

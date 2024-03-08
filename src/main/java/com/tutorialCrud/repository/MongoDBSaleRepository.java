@@ -3,13 +3,12 @@ package com.tutorialCrud.repository;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.FindOneAndReplaceOptions;
-import com.tutorialCrud.dto.GroupDTO;
-import com.tutorialCrud.dto.SalesDTO;
-import com.tutorialCrud.dto.TotalSalesDTO;
+import com.tutorialCrud.dto.*;
 import com.tutorialCrud.model.Sales;
 import jakarta.annotation.PostConstruct;
 import org.bson.types.ObjectId;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.aggregation.*;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Repository;
@@ -90,5 +89,33 @@ public class MongoDBSaleRepository implements SalesRepository {
         Aggregation aggregation = newAggregation(groupStage, skipStage, limitStage);
         AggregationResults<TotalSalesDTO> results = mongoTemplate.aggregate(aggregation, "sales", TotalSalesDTO.class);
         return results.getMappedResults();
+    }
+
+    @Override
+    public List<PopularDTO> findPopularItems() {
+        UnwindOperation unwindStage = unwind("items");
+        GroupOperation groupStage = group("$items.name").sum("items.quantity").as("totalQuantity");
+        SortOperation sortStage = sort(Sort.Direction.DESC, "totalQuantity");
+        LimitOperation limitStage = limit(5);
+        Aggregation aggregation = newAggregation(unwindStage,groupStage, sortStage, limitStage);
+        return mongoTemplate.aggregate(aggregation, "sales", PopularDTO.class).getMappedResults();
+    }
+    @Override
+    public List<BucketsDTO> findTotalSpend(){
+        ProjectionOperation projectStage = Aggregation.project()
+                .and(ArrayOperators.Size.lengthOfArray("items")).as("numItems")
+                .and(ArithmeticOperators.Multiply
+                        .valueOf("item.price")
+                        .multiplyBy("item.quantity")
+                ).as("totalAmount");
+
+        BucketOperation bucketStage = Aggregation.bucket("numItems")
+                .withBoundaries(0, 3, 6, 9)
+                .withDefaultBucket("Other")
+                .andOutputCount().as("count")
+                .andOutput("totalAmount").sum().as("totalAmount");
+
+        Aggregation aggregation = newAggregation(projectStage, bucketStage);
+        return mongoTemplate.aggregate(aggregation, "sales", BucketsDTO.class).getMappedResults();
     }
 }

@@ -1,8 +1,6 @@
 package com.tutorialCrud.service;
 
-import com.tutorialCrud.dto.GroupDTO;
-import com.tutorialCrud.dto.SalesDTO;
-import com.tutorialCrud.dto.TotalSalesDTO;
+import com.tutorialCrud.dto.*;
 import com.tutorialCrud.exceptions.EntityNotFoundException;
 import com.tutorialCrud.model.Sales;
 import com.tutorialCrud.repository.SalesRepository;
@@ -67,5 +65,14 @@ public class SalesServiceImpl implements SalesService {
     @Override
     public List<TotalSalesDTO> findTotalSales() {
         return salesRepository.TotalSales();
+    }
+
+    @Override
+    public List<PopularDTO> findPopularItems() {
+        return salesRepository.findPopularItems();
+    }
+    @Override
+    public List<BucketsDTO> findTotalSpend(){
+        return salesRepository.findTotalSpend();
     }
 }
