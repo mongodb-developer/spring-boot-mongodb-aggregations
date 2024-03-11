@@ -1,7 +1,5 @@
 package com.tutorialCrud.dto;
 
-import org.bson.types.Decimal128;
-
 import java.math.BigDecimal;
 
 public record BucketsDTO(String id, int count, BigDecimal totalAmount) {
