@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
+import java.beans.Expression;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,8 +63,7 @@ public class MongoDBSaleRepository implements SalesRepository {
     @Override
     public List<SalesDTO> matchOp(String matchValue) {
         MatchOperation matchStage = match(new Criteria("storeLocation").is(matchValue));
-        ProjectionOperation projectStage = project("items");
-        Aggregation aggregation = newAggregation(matchStage, projectStage);
+        Aggregation aggregation = newAggregation(matchStage);
         AggregationResults<SalesDTO> results = mongoTemplate.aggregate(aggregation, "sales", SalesDTO.class);
         return results.getMappedResults();
     }
@@ -104,10 +104,8 @@ public class MongoDBSaleRepository implements SalesRepository {
     public List<BucketsDTO> findTotalSpend(){
         ProjectionOperation projectStage = Aggregation.project()
                 .and(ArrayOperators.Size.lengthOfArray("items")).as("numItems")
-                .and(ArithmeticOperators.Multiply
-                        .valueOf("item.price")
-                        .multiplyBy("item.quantity")
-                ).as("totalAmount");
+                .and(ArithmeticOperators.Multiply.valueOf("price")
+                        .multiplyBy("quantity")).as("totalAmount");
 
         BucketOperation bucketStage = Aggregation.bucket("numItems")
                 .withBoundaries(0, 3, 6, 9)
