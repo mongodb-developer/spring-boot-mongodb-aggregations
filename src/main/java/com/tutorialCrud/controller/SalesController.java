@@ -49,7 +49,7 @@ public class SalesController {
         return salesService.groupAggregation(matchStage);
     }
 
-    //Count the number of sales made in each store location:
+    //Count the total sales made in each store location:
     @GetMapping("/aggregation/TotalSales")
     public List<TotalSalesDTO> findTotalSales() {
         return salesService.findTotalSales();
@@ -77,5 +77,4 @@ public class SalesController {
     public final void handleAllExceptions(RuntimeException e) {
         LOGGER.error("=> Internal server error.", e);
     }
-
 }

@@ -79,5 +79,5 @@ curl -X 'GET' 'http://localhost:8080/api/sales/aggregation/buckets' -H 'accept: 
 Aasawari Sahasrabuddhe
 
 - aasawari.sahasrabuddhe@mongodb.com
-- aasawariMongoDB on [GitHub](https://github.com/aasawariMongoDB/tutorialCRUD)
+- aasawariMongoDB on [GitHub](https://github.com/mongodb-developer/spring-mongodb-aggregations)
 - Aasawari Sahasrabuddhe in the [MongoDB Developer Community forum](https://www.mongodb.com/community/forums/u/aasawari/summary).
