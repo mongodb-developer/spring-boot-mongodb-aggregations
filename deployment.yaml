@@ -1,0 +1,22 @@
+apiVersion: atlas.mongodb.com/v1
+kind: AtlasDeployment
+metadata:
+  name: my-atlas-cluster
+spec:
+  projectRef:
+    name: project-ako
+  deploymentSpec:
+    clusterType: REPLICASET
+    name: "cluster0"
+    tags:
+      - key: "environment"
+        value: "test"
+    replicationSpecs:
+      - zoneName: AP-Zone
+        regionConfigs:
+          - electableSpecs:
+              instanceSize: M10
+              nodeCount: 3
+            providerName: AWS
+            regionName: AP_SOUTH_1
+            priority: 7
