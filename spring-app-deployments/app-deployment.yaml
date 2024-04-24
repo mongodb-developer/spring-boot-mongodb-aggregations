@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-app
+  template:
+    metadata:
+      labels:
+        app: spring-app
+    spec:
+      containers:
+      - name: spring-app
+        image: aasawarimongodb/tutorial:deployapp
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATA_MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: atlas-kubernetes-operator-cluster0-theuser
+              key: connectionStringStandardSrv
+        - name: SPRING_DATA_MONGODB_DATABASE
+          value: test
+        - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK
+          value: INFO
+        - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+          value: DEBUG
