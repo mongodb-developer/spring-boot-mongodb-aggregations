@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: atlas-kubernetes-operator
+spec:
+  containers:
+  - name: mongodb
+    image: alpine
+    command: ["tail", "-f", "/dev/null"]
+    env:
+      - name: CONN_STR
+        valueFrom:
+          secretKeyRef:
+            name: atlas-kubernetes-operator-cluster0-theuser
+            key: connectionStringStandardSrv
+
