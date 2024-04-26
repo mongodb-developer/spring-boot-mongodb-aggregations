@@ -24,7 +24,7 @@ spec:
               name: atlas-kubernetes-operator-cluster0-theuser
               key: connectionStringStandardSrv
         - name: SPRING_DATA_MONGODB_DATABASE
-          value: test
+          value: sample_supplies
         - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK
           value: INFO
         - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
