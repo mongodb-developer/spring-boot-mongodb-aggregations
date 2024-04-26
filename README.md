@@ -2,7 +2,7 @@
 
 ## Blog Post
 
-The code in this repository is discussed in [this blog post](XXX) in the [MongoDB Developer Center](https://www.mongodb.com/developer/).
+The code in this repository is discussed in [this blog post](https://www.mongodb.com/developer/languages/java/aggregation-framework-springboot-jdk-coretto/) in the [MongoDB Developer Center](https://www.mongodb.com/developer/).
 
 ## Supported versions:
 
