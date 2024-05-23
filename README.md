@@ -6,7 +6,7 @@ The code in this repository is discussed in [this blog post](https://www.mongodb
 
 ## Supported versions:
 
-- Java 21
+- Java 22
 - Spring boot 4.2.2
 - MongoDB 6.0
 - MongoDB Java driver 4.11.0
