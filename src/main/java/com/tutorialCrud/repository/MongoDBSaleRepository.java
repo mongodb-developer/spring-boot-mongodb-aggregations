@@ -38,6 +38,12 @@ public class MongoDBSaleRepository implements SalesRepository {
     }
 
     @Override
+    public Sales save(Sales Sales) {
+        Sales.setId(new ObjectId());
+        saleCollection.insertOne(Sales);
+        return Sales;
+    }
+    @Override
     public List<Sales> findAll() {
         return saleCollection.find().into(new ArrayList<>());
     }

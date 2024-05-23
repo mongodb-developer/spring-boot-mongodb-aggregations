@@ -22,4 +22,5 @@ public interface SalesService {
     List<TotalSalesDTO> findTotalSales();
     List<PopularDTO> findPopularItems();
     List<BucketsDTO> findTotalSpend();
+    SalesDTO save(SalesDTO salesDTO);
 }
