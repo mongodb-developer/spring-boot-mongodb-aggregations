@@ -20,11 +20,9 @@ public class SalesController {
     public SalesController(SalesService salesService) {
         this.salesService = salesService;
     }
-    @PostMapping("person")
+    @PostMapping("sale")
     @ResponseStatus(HttpStatus.CREATED)
-    public SalesDTO postPerson(@RequestBody SalesDTO SalesDTO) {
-        return salesService.save(SalesDTO);
-    }
+    public SalesDTO postSale(@RequestBody SalesDTO SalesDTO) { return salesService.save(SalesDTO); }
     @GetMapping()
     public List<SalesDTO> getAllSales() {
         return salesService.findAll();
