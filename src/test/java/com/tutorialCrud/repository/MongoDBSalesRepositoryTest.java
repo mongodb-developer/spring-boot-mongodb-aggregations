@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
@@ -30,6 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class MongoDBSalesRepositoryTest {
     @Container
+    @ServiceConnection
     public static MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:7.0.0"));
     private static MongoClient mongoClient;
 
@@ -44,7 +46,6 @@ public class MongoDBSalesRepositoryTest {
 
     @BeforeAll
     public static void setUpAll() {
-        mongoDBContainer.start();
         String mongoUri = mongoDBContainer.getConnectionString();
         mongoClient = MongoClients.create(mongoUri);
     }
@@ -77,7 +78,6 @@ public class MongoDBSalesRepositoryTest {
 
     @AfterAll
     public static void cleanup() {
-        mongoClient.close();
-        mongoDBContainer.stop();
+//        mongoClient.close();
     }
 }
