@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -16,6 +17,7 @@ import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -28,6 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class MongoDBSalesRepositoryTest {
     @Container
+    @ServiceConnection
     public static MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:7.0.0"));
 
     @Autowired
@@ -39,9 +42,6 @@ public class MongoDBSalesRepositoryTest {
         registry.add("spring.data.mongodb.database", () -> "testdb");
     }
 
-    @BeforeAll
-    public static void setUpAll() {
-    }
 
     @BeforeEach
     public void setUp() {
@@ -61,5 +61,10 @@ public class MongoDBSalesRepositoryTest {
     public void testFindAllSales() {
         List<Sales> salesList = salesRepository.findAll();
         assertThat(salesList).isNotEmpty();
+        assertThat(salesList.size()).isGreaterThan(0);
+        System.out.println("Sales Data:");
+        for (Sales sale : salesList) {
+            System.out.println(sale);
+        }
     }
 }
