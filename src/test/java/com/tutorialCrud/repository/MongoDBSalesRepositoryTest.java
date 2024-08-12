@@ -59,7 +59,20 @@ public class MongoDBSalesRepositoryTest {
         assertThat(salesList.size()).isGreaterThan(0);
         System.out.println("Sales Data:");
         for (Sales sale : salesList) {
-            System.out.println(sale);
+            System.out.println("Sale ID: " + sale.getId());
+            System.out.println("Date: " + sale.getSaleDate());
+            System.out.println("Store: " + sale.getStoreLocation());
+            System.out.println("Online: " + sale.isCouponUsed());
+            System.out.println("Customer: " + sale.getCustomer());
+            System.out.println("Items:");
+
+            for (Item item : sale.getItems()) {
+                System.out.println("  Item Name: " + item.getName());
+                System.out.println("  Tags: " + item.getTags());
+                System.out.println("  Price: " + item.getPrice());
+                System.out.println("  Quantity: " + item.getQuantity());
+            }
+            System.out.println();
         }
     }
 }
